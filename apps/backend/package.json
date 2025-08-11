@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "tsc && node dist/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@repo/types": "workspace:^",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.3"
+  }
+}

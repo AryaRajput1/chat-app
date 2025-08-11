@@ -1,0 +1,11 @@
+{
+  "references": [],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@types/*": [
+        "packages/types/src/*"
+      ]
+    }
+  }
+}
