@@ -1,14 +1,17 @@
 import express from "express";
-import type { User } from "@repo/types";
+import authRoute from "./routes/auth.route";
+import 'dotenv/config';
+import { connectToDB } from "./config/db";
+
+const PORT = process.env.PORT || 8081;
 
 const app = express();
-const port = 3000;
 
-app.get("/", (_req, res) => {
-  const user: User = { id: "1", name: "Arya" };
-  res.json(user);
-});
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Backend running at http://localhost:${port}`);
+app.use("/api/v1/auth", authRoute);
+
+app.listen(PORT, () => {
+  console.log(`Backend running at http://localhost:${PORT}`);
+  connectToDB()
 });
