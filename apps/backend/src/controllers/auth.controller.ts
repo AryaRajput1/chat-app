@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { generateToken } from "../utility/generateToken";
 import { profile } from "console";
+import { uploadToCloudinary } from "../utility/uploadToCloudinary";
 
 
 export const signup = async (req, res, next) => {
@@ -104,16 +105,16 @@ export const updateProfile = async (req, res, next) => {
             return res.status(400).json({ message: "Profile pic is required" });
         }
 
-        // const uploadResponse = await cloudinary.uploader.upload(profilePic);
-        // const updatedUser = await User.findByIdAndUpdate(
-        //   userId,
-        //   { profilePic: uploadResponse.secure_url },
-        //   { new: true }
-        // );
+        const imageUrl = await uploadToCloudinary(profilePic);
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { profilePic: imageUrl },
+            { new: true }
+        );
 
         res.status(200).json({
             message: "Profile updated successfully", success: true, user: {
-                id: req.user._id
+                id: userId
             }
         });
     } catch (error) {
@@ -124,7 +125,11 @@ export const updateProfile = async (req, res, next) => {
 
 export const checkAuth = (req, res, next) => {
     try {
-        res.status(200).json(req.user);
+        res.status(200).json({
+            message: 'Authenticated User',
+            user: req.user,
+            success: true
+        });
     } catch (error) {
         console.log("Error in checkAuth controller", error.message);
         next(error)

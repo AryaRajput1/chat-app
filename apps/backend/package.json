@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "npx tsc --watch & nodemon dist/index.js",
+    "dev": "nodemon dist/index.js",
     "build": "tsc"
   },
   "dependencies": {
