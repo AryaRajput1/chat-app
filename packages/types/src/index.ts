@@ -1,1 +1,1 @@
-export { SignUpPayload, User } from './auth'
+export type { SignUpPayload, User } from './auth'

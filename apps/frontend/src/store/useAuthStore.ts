@@ -1,14 +1,15 @@
-import { axiosWrapper } from '@/lib/axiosWrapper';
 import { create } from 'zustand'
 import { type SignUpPayload } from '@repo/types'
 import type { User } from '@repo/types';
+import { axiosWrapper } from '@/lib/axiosWrapper';
 
 
 interface AuthState {
     authUser?: User
     isCheckingAuth: boolean
     isSigningUp: boolean
-    checkAuth: () => Promise<void>;
+    checkAuth: () => Promise<void>
+    signup: (data: SignUpPayload) => Promise<void>
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({

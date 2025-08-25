@@ -3,13 +3,20 @@ import { User } from "../models/user.model";
 
 export const protectRoute = async (req, res, next) => {
     try {
+
+        console.log('Protected Route')
         const token = req.cookies.token;
 
         if (!token) {
             return res.status(401).json({ message: "Unauthorized - No Token Provided" });
         }
+        console.log('protectRoute')
+
+        console.log(token)
 
         const decoded = verifyToken(token);
+
+        console.log(decoded)
 
         if (!decoded) {
             return res.status(401).json({ message: "Unauthorized - Invalid Token" });
